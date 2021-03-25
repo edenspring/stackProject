@@ -70,19 +70,63 @@ class LinkedList {
   }
 
   // TODO: Implement the removeHead method here
-  removeHead() {}
+  removeHead() {
+    if (!this.head) return;
+    const oldHead = this.head;
+    const newHead = this.head.next;
+    if (this.length === 1 ){
+      this.head = null;
+      this.tail = null;
+    }
+    this.head = newHead;
+    this.length--;
+    return oldHead;
+  }
 
   // TODO: Implement the contains method here
-  contains(target) {}
+  contains(target) {
+    let head = this.head;
+    while (head){
+      if (head.value === target) return true;
+      head = head.next;
+    }
+    return false;
+  }
 
   // TODO: Implement the get method here
-  get(index) {}
+  get(index) {
+    if (index < 0) return null;
+    if (this.length === 0) return null;
+    if (index > this.length) return null;
+    let head = this.head;
+    for (let i = 0; i < this.length; i++){
+      // console.log(head)
+      let nextHead = head.next;
+      let currentHead = head;
+      if (index === i) return currentHead;
+      head = nextHead;
+    }
+  }
 
   // TODO: Implement the set method here
-  set(index, val) {}
+  set(index, val) {
+    const nodeAtIndex = this.get(index);
+    if(!nodeAtIndex) return false;
+    nodeAtIndex.value = val;
+    return true;
+    }
 
   // TODO: Implement the insert method here
-  insert(index, val) {}
+  insert(index, val) {
+    const nodeAtIndex = this.get(index)
+    let priorNode = this.get(index-1)
+    if((index > this.length) && (index > 0)) return false;
+    this.length++;
+    const newNode = new Node(val);
+    if (priorNode) priorNode.next = newNode;
+    newNode.next = nodeAtIndex;
+    return true;
+  }
 
   // TODO: Implement the remove method here
   remove(index) {}
