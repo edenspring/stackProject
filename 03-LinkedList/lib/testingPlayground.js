@@ -38,9 +38,28 @@ class LinkedList {
     this.length++;
     return this;
   }
+  // TODO: Implement the removeTail method here
+  removeTail() {
+    //remove tail
+    if (!this.length) return undefined;
+    const oldTail = this.tail;
+    const newTail = this.get(this.length - 1);
+
+    if (newTail) {
+      newTail.next = null;
+    }
+
+    this.tail = newTail;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    }
+    this.length--;
+    return oldTail;
+  }
 
   get(index) {
-    if (this.length === 0) return null;
+    if (this.length < 0) return null;
     if (index > this.length) return null;
     let head = this.head;
     //console.log(this.length)
@@ -96,10 +115,16 @@ const linkedList = new LinkedList();
 linkedList.addToTail("B");
 linkedList.addToTail("C");
 linkedList.addToTail("E");
-console.log('Should be 3 : ', linkedList.length)
-linkedList.insert(2, "D");
-console.log(linkedList.length)
-linkedList.insert(0, "A");
-console.log(linkedList.length)
-linkedList.insert(4, "F");
-console.log(linkedList.length)
+
+console.log(linkedList.length);
+console.log(linkedList.removeTail());
+console.log(linkedList.removeTail());
+console.log(linkedList.removeTail());
+console.log(linkedList.length);
+// console.log("Should be 3 : ", linkedList.length);
+// linkedList.insert(2, "D");
+// console.log(linkedList.length);
+// linkedList.insert(0, "A");
+// console.log(linkedList.length);
+// linkedList.insert(4, "F");
+// console.log(linkedList.length);
