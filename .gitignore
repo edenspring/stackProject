@@ -1,2 +1,4 @@
 node_modules/
 .DS_Store
+01-Stack/node_modules
+02-Queue/node_modules
